@@ -3,7 +3,7 @@ version 43
 __lua__
 --snakey
 --by thevoid
---Modded by phonescroller
+--modded by phonescroller
 -- base class
 Class = {}
 function Class:new(object)
