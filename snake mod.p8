@@ -2,7 +2,8 @@ pico-8 cartridge // http://www.pico-8.com
 version 43
 __lua__
 --snakey
---by thevoid
+--by thevoid, modded by Phonescroller
+
 
 -- base class
 Class = {}
@@ -19,8 +20,8 @@ function BoxCollider:new(object)
     object.type = "rectangle"
     object.top_x = 25 -- this should change bounds for snake
     object.top_y = 0
-    object.bottom_x = 25
-    object.bottom_y = 0
+    object.bottom_x = 50-- hoping this and line 25 would fix hitbox but doesn't seem to have done anything
+    object.bottom_y = -25 
     return object
 end
 
@@ -28,10 +29,10 @@ function BoxCollider:detect_collision(other_collider)
     if (other_collider == nil) then return false end
 
     -- if the other_collider is a single point
-    if (other_collider.top_x == other_collider.bottom_x and other_collider.top_y == other_collider.bottom_y) then
+  if (other_collider.top_x == other_collider.bottom_x and other_collider.top_y == other_collider.bottom_y) then
         -- calculate side length of the square of self
-        local side_length = abs(self.bottom_x - self.top_x)
-
+        local side_length_x = abs(self.bottom_x - self.top_x) -- No idea waht "side length" does, could not find this variable anywhere else in program. Probably some debugging thing
+        local side_length_y = abs(self.bottom_y + self.top_y) -- added this, not expecting much. 
         -- check if point is within bounds
         return (self.top_x <= other_collider.top_x and other_collider.top_x <= self.bottom_x) and (self.top_y <= other_collider.top_y and other_collider.top_y <= self.bottom_y)
     end
@@ -122,8 +123,8 @@ function Fruit:new(object)
 
     object.collider.top_x = object.x
     object.collider.top_y = object.y
-    object.collider.bottom_x = object.x
-    object.collider.bottom_y = object.y
+    object.collider.bottom_x = object.x 
+    object.collider.bottom_y = object.y 
 
 
 
@@ -305,7 +306,7 @@ function _init()
     if save_file.high_score == 0 and GameManager.score == 0 then
         fruit.x = 100
         fruit.y = 20
-        fruit.collider.top_x = fruit.x
+        fruit.collider.top_x = fruit.x 
         fruit.collider.top_y = fruit.y
         fruit.collider.bottom_x = fruit.x
         fruit.collider.bottom_y = fruit.y
