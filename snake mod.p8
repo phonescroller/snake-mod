@@ -18,10 +18,10 @@ BoxCollider = Class:new()
 function BoxCollider:new(object)
     object = GameObject.new(self, object)
     object.type = "rectangle"
-    object.top_x = 25 -- this should change bounds for snake
+    object.top_x = 0 -- this should change bounds for snake
     object.top_y = 0
-    object.bottom_x = 50-- hoping this and line 25 would fix hitbox but doesn't seem to have done anything
-    object.bottom_y = -25 
+    object.bottom_x = 0-- hoping this and line 25 would fix hitbox but doesn't seem to have done anything
+    object.bottom_y = 0
     return object
 end
 
@@ -316,10 +316,10 @@ function _init()
 end
 
 function draw_border()
-    line(25, 0, 25, 127, 12) -- left wall
-    line(25, 0, 125, 0, 2) -- top of playfield
-    line(125, 0, 125, 127, 12) -- right wall
-    line(25, 127, 125, 127, 2) -- bottom line of playfiled
+    line(26, 0, 26, 126, 12) -- left wall
+    line(26, 0, 126, 0, 2) -- top of playfield
+    line(126, 0, 126, 126, 12) -- right wall
+    line(26, 127, 125, 127, 2) -- bottom line of playfiled
 end
 
 function draw_game_over()
